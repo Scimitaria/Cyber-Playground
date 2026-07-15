@@ -4,7 +4,7 @@ import { pool } from '@/db/db';
 
 async function getUsers() {
   // Use parameterized queries to defend against SQL injections
-  const [rows] = await pool.query('SHOW TABLES');
+  const [rows] = await pool.query('SELECT * FROM Students');
   return rows as any[];
 }
 
