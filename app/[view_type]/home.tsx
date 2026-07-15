@@ -18,9 +18,10 @@ async function OnSubmit(formData: FormData) {
   'use server'; 
   const input = Object.fromEntries(formData);
   const query = "SELECT * FROM Students WHERE Student = '" + input['name'] + "'";
+  console.log(query)
   const [rows] = await pool.query<Student[] & RowDataPacket[]>(query);
-  const row: Student = rows[0];
-  console.log(row);
+  //const row: Student = rows[0];
+  console.log(rows);
 }
 
 export default async function Home(){
@@ -37,6 +38,10 @@ export default async function Home(){
         />
         <button type="submit">Submit</button>
       </form>
+      <h2 className="text-lg font-bold">Injections:</h2>
+      <ul className="list-disc list-inside pl-6 md:pl-12">
+        <li>&lt;name&gt;';SELECT * FROM Students;# - Gets all student names and passwords</li>
+      </ul>
     </center>
     </div>
   );
