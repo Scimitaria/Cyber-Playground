@@ -21,6 +21,7 @@ const pressStart2P = Press_Start_2P({
 export const metadata: Metadata = {
   title: "Cyber Playground",
   description: "Cyber Playground",
+  icons: {icon: '/icon.ico',},
 };
 
 export default function RootLayout({
