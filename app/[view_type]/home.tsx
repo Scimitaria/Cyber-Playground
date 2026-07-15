@@ -1,9 +1,11 @@
+import { RowDataPacket } from 'mysql2';
 import { pool } from '@/db/db';
 
 //homepage
 
 interface Student {
-  name: string
+  name: string;
+  password: string;
 }
 
 async function getUsers() {
@@ -16,7 +18,8 @@ async function OnSubmit(formData: FormData) {
   'use server'; 
   const input = Object.fromEntries(formData);
   const query = "SELECT * FROM Students WHERE Student = '" + input['name'] + "'";
-  const row = (await pool.query(query))[0];
+  const [rows] = await pool.query<Student[] & RowDataPacket[]>(query);
+  const row: Student = rows[0];
   console.log(row);
 }
 
