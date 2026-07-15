@@ -6,7 +6,7 @@ export default function Page() {
   return (
     <div>
       {/* pages are stored in [view_type] */}
-      <Home isLoggedIn={false}/>
+      <Home/>
     </div>
   );
 }

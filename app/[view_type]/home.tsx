@@ -1,9 +1,17 @@
-import { Press_Start_2P } from "next/font/google";
-import { HTMLAttributes } from "react";
+import { pool } from '@/db/db';
 
 //homepage
 
-export default function Home(){
+async function getUsers() {
+  // Use parameterized queries to defend against SQL injections
+  const [rows] = await pool.query('SHOW TABLES');
+  return rows as any[];
+}
+
+export default async function Home(){
+  const users = await getUsers();
+  console.log(users);
+
   return(
     <div id="Home" className="tabcontent">
     <center>
